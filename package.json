@@ -1,7 +1,21 @@
 {
   "name": "vue3-admin-template",
   "version": "0.1.0",
-  "private": true,
+  "description": "vue3 and typescript admin template",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xh-shen/vue3-admin-template.git"
+  },
+  "keywords": [
+    "vue",
+    "vue3",
+    "typescript",
+    "ts",
+    "admin",
+    "template"
+  ],
+  "author": "shen <9509394@qq.com>",
+  "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
