@@ -10,7 +10,7 @@
     "vue",
     "vue3",
     "typescript",
-    "ts",
+    "element3",
     "admin",
     "template"
   ],
@@ -23,15 +23,24 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.21.1",
+    "classnames": "^2.2.6",
     "core-js": "^3.6.5",
+    "element3": "^0.0.39",
+    "js-cookie": "^2.2.1",
+    "lodash": "^4.17.20",
+    "moment": "^2.29.1",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.11",
     "@types/jest": "^24.0.19",
+    "@types/js-cookie": "^2.2.6",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
+    "@vue/babel-plugin-jsx": "^1.0.2",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",

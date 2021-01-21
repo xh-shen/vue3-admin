@@ -1,0 +1,90 @@
+@import './variables.scss';
+
+$prefix: 's-el';
+$splicing: '-';
+
+/* Selector */
+@mixin namespace($scopeName) {
+  $module: $prefix + $splicing + $scopeName !global;
+  .#{$module} {
+    @content;
+  }
+}
+
+@mixin selector($type, $selection: none) {
+  @if $selection == 'dot' {
+    @at-root {
+      &.#{$module + $splicing + $type} {
+        @content;
+      }
+    }
+  } @else if $selection == 'space' {
+    @at-root {
+      & .#{$module + $splicing + $type} {
+        @content;
+      }
+    }
+  } @else {
+    @at-root {
+      .#{$module + $splicing + $type} {
+        @content;
+      }
+    }
+  }
+}
+
+/* Placeholder */
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+
+  &::-moz-placeholder {
+    @content;
+  }
+
+  &:-ms-input-placeholder {
+    @content;
+  }
+}
+
+/* Utils */
+@mixin utils-user-select($value) {
+  -moz-user-select: $value;
+  -webkit-user-select: $value;
+  -ms-user-select: $value;
+}
+
+@mixin utils-clearfix {
+  $selector: &;
+
+  @at-root {
+    #{$selector}::before,
+    #{$selector}::after {
+      display: table;
+      content: '';
+    }
+    #{$selector}::after {
+      clear: both;
+    }
+  }
+}
+
+@mixin utils-vertical-center {
+  $selector: &;
+
+  @at-root {
+    #{$selector}::after {
+      display: inline-block;
+      content: '';
+      height: 100%;
+      vertical-align: middle;
+    }
+  }
+}
+
+@mixin utils-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -1,0 +1,47 @@
+@import '~@/assets/styles/variables.scss';
+@import '~@/assets/styles/mixins.scss';
+
+@include namespace(login) {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background: url('~@/assets/images/login_bg.jpg') no-repeat fixed;
+  background-size: cover;
+  &-container {
+    width: 424px;
+  }
+  &-title {
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    img {
+      height: 50px;
+    }
+    span {
+      margin-left: 20px;
+      font-weight: 500;
+      font-size: 32px;
+    }
+  }
+  &-form {
+    margin: 32px 0;
+    width: 350px;
+    background: #fff;
+    padding: 50px 32px 30px;
+    border-radius: 0 8px 8px 0;
+    h2 {
+      text-align: center;
+    }
+    &_button {
+      width: 100%;
+    }
+  }
+  &-tip {
+    margin-bottom: 200px;
+    text-align: center;
+    color: #a6a6a8;
+    font-size: 14px;
+  }
+}
