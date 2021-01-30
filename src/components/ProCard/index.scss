@@ -1,0 +1,67 @@
+@import '~@/assets/styles/variables.scss';
+@import '~@/assets/styles/mixins.scss';
+
+$pro-card-padding-vertical: 15px !default;
+$pro-card-padding-horizontal: 20px !default;
+
+@include namespace(pro-card) {
+  background-color: $color-white;
+  border-radius: $border-radius-base;
+  transition: $transition-base;
+  &.is-border {
+    border: $border-lighter;
+  }
+  &.is-always-shadow,
+  &.is-hover-shadow:hover {
+    box-shadow: $box-shadow-lighter;
+  }
+  &.is-collapse {
+    @include namespace(pro-card) {
+      &__header {
+        border-bottom: 0;
+        padding-bottom: $pro-card-padding-vertical;
+      }
+    }
+  }
+  &__header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $pro-card-padding-vertical $pro-card-padding-horizontal;
+    padding-bottom: 0;
+    &.is-border {
+      border-bottom: $border-lighter;
+      padding-bottom: $pro-card-padding-vertical;
+    }
+    &-title {
+      flex: 1;
+      color: $color-text-primary;
+      font-size: 18px;
+      font-weight: 400;
+    }
+    &-collapse {
+      padding: 0 5px;
+      color: $color-text-primary;
+      cursor: pointer;
+    }
+  }
+  &__content {
+    position: relative;
+    flex-direction: column;
+  }
+  &__body {
+    position: relative;
+    padding: $pro-card-padding-vertical $pro-card-padding-horizontal;
+  }
+  &__footer {
+    position: relative;
+    display: flex;
+    padding: $pro-card-padding-vertical $pro-card-padding-horizontal;
+    padding-top: 0;
+    &.is-border {
+      padding-top: $pro-card-padding-vertical;
+      border-top: $border-lighter;
+    }
+  }
+}

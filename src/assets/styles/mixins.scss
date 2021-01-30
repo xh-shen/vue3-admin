@@ -1,8 +1,5 @@
 @import './variables.scss';
 
-$prefix: 's-el';
-$splicing: '-';
-
 /* Selector */
 @mixin namespace($scopeName) {
   $module: $prefix + $splicing + $scopeName !global;

@@ -2,16 +2,13 @@
  * @Author: shen
  * @Date: 2021-01-21 16:06:21
  * @LastEditors: shen
- * @LastEditTime: 2021-01-21 19:54:21
+ * @LastEditTime: 2021-01-27 20:20:53
  * @Description:
  */
 import { defineComponent, PropType } from 'vue'
+import { useInject } from '@/hooks/useContext'
 import logo from '@/assets/images/logo.png'
 import logoBig from '@/assets/images/logo_big.png'
-import config from '@/config'
-const { prefixCls } = config
-
-const namespaceCls = `${prefixCls}-layout-logo`
 
 export default defineComponent({
   name: 'Logo',
@@ -21,12 +18,14 @@ export default defineComponent({
     },
   },
   setup(props) {
-    return () => {
-      return (
-        <div class={namespaceCls}>
+    const { getPrefixCls } = useInject()
+    const prefixCls = getPrefixCls('layout__logo')
+    return () => (
+      <div class={prefixCls}>
+        <router-link to="/">
           <img src={props.collapse ? logo : logoBig} alt="logo" />
-        </div>
-      )
-    }
+        </router-link>
+      </div>
+    )
   },
 })

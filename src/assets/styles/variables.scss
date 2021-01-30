@@ -1,5 +1,53 @@
+$prefix: 's-el';
+$splicing: '-';
+
 /* Color */
 $color-primary: #409eff !default;
 $color-white: #ffffff !default;
 $color-black: #000000 !default;
-$menu-dark-color: #303133;
+
+$color-text-primary: #303133 !default;
+$color-text-regular: #303133 !default;
+$color-text-secondary: #909399 !default;
+$color-text-placeholder: #c0c4cc !default;
+$border-color-base: #dcdfe6 !default;
+$border-color-light: #e4e7ed !default;
+$border-color-lighter: #ebeef5 !default;
+$border-color-extra-light: #f2f6fc !default;
+
+$color-success: #67c23a !default;
+$color-warning: #e6a23c !default;
+$color-danger: #f56c6c !default;
+$color-info: #909399 !default;
+
+/* base */
+$transition-base: 0.3s;
+$border-radius-base: 4px !default;
+$border-transition-base: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1) !default;
+$color-transition-base: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1) !default;
+$border-color-base: #dcdfe6 !default;
+$background-color-base: #f5f7fa !default;
+$box-shadow-base: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04) !default;
+$box-shadow-lighter: 0 2px 12px 0 rgba(0, 0, 0, 0.1) !default;
+$font-size-base: 14px !default;
+$font-color-disabled-base: #bbb !default;
+
+$border-width-base: 1px !default;
+$border-style-base: solid !default;
+$border-color-hover: $color-text-placeholder !default;
+$border-base: $border-width-base $border-style-base $border-color-base !default;
+$border-lighter: $border-width-base $border-style-base $border-color-lighter !default;
+$border-radius-base: 4px !default;
+$border-radius-small: 2px !default;
+$border-radius-circle: 100% !default;
+$border-radius-zero: 0 !default;
+
+$disabled-fill-base: $background-color-base !default;
+$disabled-color-base: $color-text-placeholder !default;
+$disabled-border-base: $border-color-light !default;
+
+:export {
+  prefix: $prefix;
+  splicing: $splicing;
+  colorPrimary: $color-primary;
+}

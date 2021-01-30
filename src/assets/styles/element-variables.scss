@@ -1,0 +1,42 @@
+@import './variables.scss';
+/* 改变主题色变量 */
+$--color-primary: $color-primary;
+$--color-white: $color-white !default;
+$--color-black: $color-black !default;
+
+$--color-text-primary: $color-text-primary !default;
+$--color-text-regular: $color-text-regular;
+$--color-text-secondary: $color-text-secondary !default;
+$--color-text-placeholder: $color-text-placeholder !default;
+$--border-color-base: $border-color-base !default;
+$--border-color-light: $border-color-light !default;
+$--border-color-lighter: $border-color-lighter !default;
+$--border-color-extra-light: $border-color-extra-light !default;
+
+$--color-success: $color-success !default;
+$--color-warning: $color-warning !default;
+$--color-danger: $color-danger !default;
+$--color-info: $color-info !default;
+
+/* base */
+$--border-radius-base: $border-radius-base;
+$--border-transition-base: $border-transition-base !default;
+$--color-transition-base: $color-transition-base !default;
+$--border-color-base: $border-color-base !default;
+$--background-color-base: $background-color-base !default;
+$--box-shadow-base: $box-shadow-base !default;
+$--box-shadow-light: $box-shadow-lighter !default;
+$--font-size-base: $font-size-base !default;
+$--font-color-disabled-base: $font-color-disabled-base !default;
+
+$--border-width-base: $border-width-base !default;
+$--border-style-base: $border-style-base !default;
+$--border-radius-base: $border-radius-base !default;
+$--border-radius-small: $border-radius-small !default;
+$--border-radius-circle: $border-radius-circle !default;
+$--border-radius-zero: $border-radius-zero !default;
+
+/* 改变 icon 字体路径变量，必需 */
+$--font-path: '~element-plus/lib/theme-chalk/fonts';
+
+@import '~element-plus/packages/theme-chalk/src/index';

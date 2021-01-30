@@ -8,10 +8,10 @@
   align-items: center;
   background: url('~@/assets/images/login_bg.jpg') no-repeat fixed;
   background-size: cover;
-  &-container {
+  &__container {
     width: 424px;
   }
-  &-title {
+  &__title {
     display: flex;
     height: 40px;
     justify-content: center;
@@ -25,20 +25,20 @@
       font-size: 32px;
     }
   }
-  &-form {
+  &__form {
+    position: relative;
     margin: 32px 0;
-    width: 350px;
+    width: 100%;
     background: #fff;
     padding: 50px 32px 30px;
     border-radius: 0 8px 8px 0;
-    h2 {
-      text-align: center;
-    }
-    &_button {
-      width: 100%;
-    }
   }
-  &-tip {
+  &__lang {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+  &__tip {
     margin-bottom: 200px;
     text-align: center;
     color: #a6a6a8;

@@ -1,0 +1,52 @@
+@import '~@/assets/styles/variables.scss';
+@import '~@/assets/styles/mixins.scss';
+
+@include namespace(icons) {
+  &-actions {
+    display: flex;
+    &-search {
+      flex: 1;
+      margin-left: 10px;
+    }
+  }
+  &-list {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+  &-item {
+    margin: 20px;
+    height: 85px;
+    text-align: center;
+    width: 100px;
+    float: left;
+    color: #24292e;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+    &.active,
+    &:hover {
+      color: $color-primary;
+      @include namespace(icons) {
+        &-item-icon {
+          transform: scale(1.4);
+        }
+      }
+    }
+    &-icon {
+      display: block;
+      font-size: 30px;
+      text-transform: none;
+      transition: transform 0.3s ease-in-out;
+      will-change: transform;
+    }
+    &-name {
+      display: block;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    .disabled {
+      pointer-events: none;
+    }
+  }
+}

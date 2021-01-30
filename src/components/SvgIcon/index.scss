@@ -1,0 +1,20 @@
+@import '~@/assets/styles/variables.scss';
+@import '~@/assets/styles/mixins.scss';
+
+@include namespace(svg-icon) {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+  transition: $transition-base;
+  &__spin {
+    animation: loadingCircle 1s linear infinite;
+  }
+}
+
+@keyframes loadingCircle {
+  100% {
+    transform: rotate(360deg);
+  }
+}
