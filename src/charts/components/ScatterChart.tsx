@@ -2,8 +2,8 @@
  * @Author: shen
  * @Date: 2021-01-29 13:06:06
  * @LastEditors: shen
- * @LastEditTime: 2021-01-30 12:15:26
- * @Description:
+ * @LastEditTime: 2021-01-30 17:03:46
+ * @Description: 散点图
  */
 
 import { defineComponent, PropType } from 'vue'
@@ -18,6 +18,14 @@ ChartFactory.use(ScatterChart)
 
 const option: ScatterChartOption = {
   series: [{ type: 'scatter' }],
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'line',
+    },
+  },
+  xAxis: { type: 'category' },
+  yAxis: {},
 }
 
 const ScatterChartProps = {

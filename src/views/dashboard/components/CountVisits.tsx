@@ -2,12 +2,11 @@
  * @Author: shen
  * @Date: 2021-01-28 20:20:23
  * @LastEditors: shen
- * @LastEditTime: 2021-01-30 15:24:37
+ * @LastEditTime: 2021-01-30 20:19:44
  * @Description:
  */
 import { defineComponent } from 'vue'
-// import { echarts, LineChart } from '@/charts'
-import { LineChart } from '@/charts'
+import { LineChart, LineChartOption } from '@/charts'
 import CountProCard from './CountProCard'
 
 const data = [
@@ -30,65 +29,64 @@ const data = [
   { x: '2021-02-10', y: 5 },
 ]
 
+const options: LineChartOption = {
+  legend: {
+    show: false,
+  },
+  grid: {
+    top: '10',
+    left: '5',
+    right: '5',
+    bottom: '0',
+  },
+  tooltip: {
+    axisPointer: {
+      type: 'none',
+    },
+  },
+  color: ['#8d55de'],
+  xAxis: {
+    show: false,
+    boundaryGap: false,
+  },
+  yAxis: {
+    show: false,
+  },
+  series: [
+    {
+      areaStyle: {
+        color: '#8d55de',
+        opacity: 1,
+      },
+      // areaStyle: {
+      //   opacity: 0.8,
+      //   color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+      //     {
+      //       offset: 0,
+      //       color: 'rgba(128, 255, 165)',
+      //     },
+      //     {
+      //       offset: 1,
+      //       color: 'rgba(1, 191, 236)',
+      //     },
+      //   ]),
+      // },
+      lineStyle: {
+        width: 0,
+      },
+      showSymbol: false,
+      clip: false,
+      smooth: true, // true 为平滑曲线，false为直线
+    },
+  ],
+}
+
 export default defineComponent({
   name: 'CountVisits',
   setup() {
     return () => (
       <CountProCard meta="访问量" footerMeta="日访问量" total={3452} footerTotal={1123} contentStyle={{ height: '100%' }} tip="访问量">
-        <LineChart
-          data={data.map((item) => Object.values(item))}
-          options={{
-            legend: {
-              show: false,
-            },
-            grid: {
-              top: '10',
-              left: '5',
-              right: '5',
-              bottom: '0',
-            },
-            tooltip: {
-              axisPointer: {
-                type: 'none',
-              },
-            },
-            color: ['#8d55de'],
-            xAxis: {
-              show: false,
-              boundaryGap: false,
-            },
-            yAxis: {
-              show: false,
-            },
-            series: [
-              {
-                areaStyle: {
-                  color: '#8d55de',
-                  opacity: 1,
-                },
-                // areaStyle: {
-                //   opacity: 0.8,
-                //   color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                //     {
-                //       offset: 0,
-                //       color: 'rgba(128, 255, 165)',
-                //     },
-                //     {
-                //       offset: 1,
-                //       color: 'rgba(1, 191, 236)',
-                //     },
-                //   ]),
-                // },
-                lineStyle: {
-                  width: 0,
-                },
-                showSymbol: false,
-                clip: false,
-                smooth: true, // true 为平滑曲线，false为直线
-              },
-            ],
-          }}
-        />
+        <LineChart data={data.map((item) => Object.values(item))} options={options} />
       </CountProCard>
     )
   },

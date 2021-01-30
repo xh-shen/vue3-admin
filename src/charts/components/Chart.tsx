@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-29 21:37:07
  * @LastEditors: shen
- * @LastEditTime: 2021-01-30 16:20:29
+ * @LastEditTime: 2021-01-30 20:27:08
  * @Description:
  */
 import { defineComponent, nextTick, onMounted, onUnmounted, ref, toRefs, watch, PropType } from 'vue'
@@ -34,7 +34,7 @@ export default defineComponent({
           },
         })
     }
-    watch(data, setDataset)
+    data && watch(data, setDataset)
     watch(
       () => props.options,
       () => {
@@ -51,9 +51,9 @@ export default defineComponent({
       nextTick(() => {
         instance = ChartFactory.create(dom.value as HTMLElement, attrs.option, props.options)
         setDataset()
-        setTimeout(() => {
-          props.getInstance && props.getInstance(instance)
-        })
+        // setTimeout(() => {
+        props.getInstance && props.getInstance(instance)
+        // })
       })
     })
     onUnmounted(() => {

@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-19 21:04:48
  * @LastEditors: shen
- * @LastEditTime: 2021-01-29 15:01:46
+ * @LastEditTime: 2021-01-30 20:25:29
  * @Description:
  */
 import { defineComponent } from 'vue'
@@ -11,8 +11,9 @@ import CountVisits from './components/CountVisits'
 import CountPayments from './components/CountPayments'
 import CountOperate from './components/CountOperate'
 import SalesBarChart from './components/SalesBarChart'
-import LineSearchChart from './components/LineSearchChart'
+import LineSearchChart from './components/SearchLineChart'
 import SalesPieChart from './components/SalesPieChart'
+import BrowserRadarChart from './components/BrowserRadarChart'
 
 import './index.scss'
 
@@ -42,12 +43,13 @@ export default defineComponent({
           <SalesBarChart />
           <el-row gutter={gutter}>
             <el-col {...colSpan}>
-              <LineSearchChart />
+              <BrowserRadarChart />
             </el-col>
             <el-col {...colSpan}>
               <SalesPieChart />
             </el-col>
           </el-row>
+          <LineSearchChart />
         </scroll-container>
       </div>
     )

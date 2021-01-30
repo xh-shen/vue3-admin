@@ -2,8 +2,8 @@
  * @Author: shen
  * @Date: 2021-01-29 13:06:06
  * @LastEditors: shen
- * @LastEditTime: 2021-01-30 16:03:17
- * @Description:
+ * @LastEditTime: 2021-01-30 17:07:29
+ * @Description: 柱形折线图
  */
 
 import { defineComponent, PropType } from 'vue'
@@ -24,6 +24,8 @@ const option: BarLineChartOption = {
       type: 'line',
     },
   },
+  xAxis: { type: 'category' },
+  yAxis: {},
 }
 
 const BarLineChartProps = {

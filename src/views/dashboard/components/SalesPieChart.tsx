@@ -2,43 +2,104 @@
  * @Author: shen
  * @Date: 2021-01-28 23:11:11
  * @LastEditors: shen
- * @LastEditTime: 2021-01-30 12:39:32
+ * @LastEditTime: 2021-01-30 20:04:30
  * @Description:
  */
 import { defineComponent, nextTick, onMounted, ref } from 'vue'
-import { BarChart, ECharts, BarChartOption } from '@/charts'
+import { PieChart, ECharts, PieChartOption } from '@/charts'
 
 export default defineComponent({
   name: 'SalesPieChart',
   setup() {
     let instance: ECharts
     const data = ref([
-      ['product', 'Milk Tea', 'SHEN'],
-      ['2015', 43.3, 12.2],
-      ['2016', 83.1, 54.3],
-      ['2017', 86.4, 12.3],
-      ['2018', 72.4, 33.2],
+      {
+        key1: '直达',
+        key2: 335,
+        key3: 123,
+      },
+      {
+        key1: '营销广告',
+        key2: 679,
+        key3: 121,
+      },
+      {
+        key1: '搜索引擎',
+        key2: 153,
+        key3: 234,
+      },
+      {
+        key1: '百度',
+        key2: 233,
+        key3: 148,
+      },
+      {
+        key1: '谷歌',
+        key2: 451,
+        key3: 251,
+      },
     ])
-    setTimeout(() => {
-      data.value = [
-        ['product', 'Milk Tea', 'SHEN'],
-        ['2015', 1, 12.2],
-        ['2016', 14, 54.3],
-        ['2017', 12, 12.3],
-        ['2018', 72.4, 2],
-      ]
-    }, 2000)
 
     onMounted(() => {
       nextTick(() => {
-        instance.setOption<BarChartOption>({
-          series: [{ type: 'bar' }, { type: 'bar' }],
+        instance.setOption<PieChartOption>({
+          legend: {
+            orient: 'vertical',
+            align: 'left',
+            left: 0,
+          },
+          series: [
+            {
+              name: '访问来源',
+              type: 'pie',
+              selectedMode: 'single',
+              radius: [0, 70],
+              itemStyle: {
+                borderRadius: 4,
+                borderColor: '#fff',
+                borderWidth: 2,
+              },
+              minShowLabelAngle: 1,
+              encode: {
+                itemName: 'key1',
+                value: 'key2',
+              },
+              label: {
+                show: false,
+                position: 'center',
+              },
+              emphasis: {
+                label: {
+                  show: true,
+                  fontSize: '30',
+                },
+              },
+              labelLine: {
+                show: false,
+              },
+            },
+            {
+              name: '访问来源',
+              type: 'pie',
+              radius: [110, 140],
+              minShowLabelAngle: 1,
+              itemStyle: {
+                borderRadius: 4,
+                borderColor: '#fff',
+                borderWidth: 2,
+              },
+              encode: {
+                itemName: 'key1',
+                value: 'key3',
+              },
+            },
+          ],
         })
       })
     })
     return () => (
       <pro-card
-        title="销售额类别占比"
+        title="访问来源占比"
         headerBorder
         extra={
           <el-dropdown
@@ -56,9 +117,7 @@ export default defineComponent({
           </el-dropdown>
         }
       >
-        <div style="height: 300px">
-          <BarChart data={data.value} getInstance={(ins) => (instance = ins)} />
-        </div>
+        <PieChart data={data.value} getInstance={(ins) => (instance = ins)} style="height: 400px" />
       </pro-card>
     )
   },

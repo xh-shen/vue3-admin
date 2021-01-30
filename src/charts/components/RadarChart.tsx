@@ -2,8 +2,8 @@
  * @Author: shen
  * @Date: 2021-01-29 13:06:06
  * @LastEditors: shen
- * @LastEditTime: 2021-01-30 12:24:23
- * @Description:
+ * @LastEditTime: 2021-01-30 20:09:19
+ * @Description: 雷达图
  */
 
 import { defineComponent, PropType } from 'vue'

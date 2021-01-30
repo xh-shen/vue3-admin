@@ -2,8 +2,8 @@
  * @Author: shen
  * @Date: 2021-01-29 13:06:06
  * @LastEditors: shen
- * @LastEditTime: 2021-01-30 14:47:28
- * @Description:
+ * @LastEditTime: 2021-01-30 17:01:01
+ * @Description: 折线图
  */
 import { defineComponent, PropType } from 'vue'
 import ChartFactory, { ChartOption } from '../ChartFactory'
@@ -23,6 +23,8 @@ const option: LineChartOption = {
       type: 'line',
     },
   },
+  xAxis: { type: 'category' },
+  yAxis: {},
 }
 
 const LineChartProps = {

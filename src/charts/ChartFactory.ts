@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-29 19:28:40
  * @LastEditors: shen
- * @LastEditTime: 2021-01-30 15:41:27
+ * @LastEditTime: 2021-01-30 19:53:08
  * @Description:
  */
 import * as echarts from 'echarts/core'
@@ -22,7 +22,7 @@ import {
   TooltipComponent,
   TooltipComponentOption,
 } from 'echarts/components'
-import { isObject, merge } from 'lodash-es'
+import { isObject } from 'lodash-es'
 
 export type ChartOption<T> = echarts.ComposeOption<T | DataZoomComponentOption | LegendComponentOption | DatasetComponentOption | TitleComponentOption | GridComponentOption | TooltipComponentOption>
 export type ECharts = echarts.EChartsType
@@ -40,9 +40,7 @@ export const defaultOption = {
       fontSize: 12,
     },
   },
-  color: ['#409eff', 'rgb(82, 196, 26)', 'rgb(245, 34, 45)', 'rgb(250, 173, 20)', 'rgb(47, 84, 235)', 'rgb(114, 46, 209)'],
-  xAxis: { type: 'category' },
-  yAxis: {},
+  color: ['#3AA1FF', '#36CBCB', '#F2637B', '#975FE5', '#FBD437', '#1890FF', '#13C2C2', 'rgb(245, 34, 45)', 'rgb(250, 173, 20)', 'rgb(47, 84, 235)', 'rgb(114, 46, 209)'],
 }
 
 export default class ChartFactory {
@@ -56,7 +54,10 @@ export default class ChartFactory {
 
   static create(dom: HTMLElement, ...args: any[]): ECharts {
     const instance: ECharts = echarts.init(dom)
-    instance.setOption({ ...merge(defaultOption, args[0]) })
+    instance.setOption(defaultOption)
+    if (args[0] && isObject(args[0])) {
+      instance.setOption({ ...(args[0] as ECBasicOption) })
+    }
     if (args[1] && isObject(args[1])) {
       instance.setOption({ ...(args[1] as ECBasicOption) })
     }

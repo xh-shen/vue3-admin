@@ -2,10 +2,10 @@
  * @Author: shen
  * @Date: 2021-01-28 20:20:23
  * @LastEditors: shen
- * @LastEditTime: 2021-01-30 16:19:25
+ * @LastEditTime: 2021-01-30 17:38:41
  * @Description:
  */
-import { defineComponent, reactive, watch } from 'vue'
+import { defineComponent, nextTick, onMounted, reactive } from 'vue'
 import { BarLineChart, ECharts, BarLineChartOption } from '@/charts'
 import { useInject } from '@/hooks/useContext'
 
@@ -26,65 +26,61 @@ const data = [
 ]
 
 type ChartType = {
-  instance: ECharts | null
   data: object[]
 }
 
 export default defineComponent({
   name: 'SalesBarChart',
   setup() {
+    let instance: ECharts
     const { getPrefixCls } = useInject()
     const prefixCls = getPrefixCls('pages-dashboard__sales')
     const chart: ChartType = reactive({
-      instance: null,
       data: data.map((item) => Object.values(item)),
     })
-
-    watch(
-      () => chart.instance,
-      () => {
-        chart.instance &&
-          chart.instance.setOption<BarLineChartOption>({
-            grid: {
-              top: '35',
-              left: '50',
-              right: '30',
-              bottom: '20',
-            },
-            tooltip: {
-              trigger: 'axis',
-              axisPointer: {
-                type: 'cross',
-                label: {
-                  backgroundColor: 'rgba(0,0,0,.5)',
-                },
+    onMounted(() => {
+      nextTick(() => {
+        instance.setOption<BarLineChartOption>({
+          grid: {
+            top: '35',
+            left: '50',
+            right: '30',
+            bottom: '20',
+          },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'cross',
+              label: {
+                backgroundColor: 'rgba(0,0,0,.5)',
               },
             },
-            xAxis: {
-              axisTick: {
-                alignWithLabel: true,
+          },
+          xAxis: {
+            axisTick: {
+              alignWithLabel: true,
+            },
+          },
+          yAxis: {
+            splitLine: {
+              show: true,
+              lineStyle: {
+                type: 'dashed',
               },
             },
-            yAxis: {
-              splitLine: {
-                show: true,
-                lineStyle: {
-                  type: 'dashed',
-                },
-              },
+          },
+          series: [
+            {
+              type: 'bar',
+              barMaxWidth: 40,
             },
-            series: [
-              {
-                type: 'bar',
-                barMaxWidth: 40,
-              },
-              {
-                type: 'line',
-              },
-            ],
-          })
-      },
-    )
+            {
+              type: 'line',
+            },
+          ],
+        })
+      })
+    })
 
     return () => (
       <pro-card
@@ -98,7 +94,7 @@ export default defineComponent({
           <el-col {...{ lg: 18, md: 16, xs: 24 }}>
             <h3 class={`${prefixCls}-title`}>销售趋势</h3>
             <div class={`${prefixCls}-chart`}>
-              <BarLineChart data={chart.data} getInstance={(ins) => (chart.instance = ins)} />
+              <BarLineChart data={chart.data} getInstance={(ins) => (instance = ins)} />
             </div>
           </el-col>
           <el-col {...{ lg: 6, md: 8, xs: 24 }}>
