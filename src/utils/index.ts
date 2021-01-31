@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-20 10:13:02
  * @LastEditors: shen
- * @LastEditTime: 2021-01-29 12:00:56
+ * @LastEditTime: 2021-01-31 16:23:55
  * @Description:
  */
 
@@ -27,4 +27,22 @@ export function rafThrottle<T extends AnyFunction<any>>(fn: T): AnyFunction<void
       locked = false
     })
   }
+}
+
+/**
+ * @description 驼峰转中横线
+ * @param {string} str
+ * @returns
+ */
+export function humpToMidline(str: string) {
+  return str.replace(/([A-Z])/g, '-$1').toLowerCase()
+}
+
+/**
+ * @description 中横线转驼峰
+ * @param {string} str
+ * @returns
+ */
+export function midlinetoHump(str: string) {
+  return str.replace(/-(\w)/g, (_, letter) => letter.toUpperCase())
 }

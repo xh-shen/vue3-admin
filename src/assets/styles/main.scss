@@ -30,3 +30,11 @@ a {
   height: 40px !important;
   line-height: 40px !important;
 }
+
+.el-popper,
+.el-popper__arrow {
+  &::before {
+    border: 0 !important;
+    background-color: transparent !important;
+  }
+}

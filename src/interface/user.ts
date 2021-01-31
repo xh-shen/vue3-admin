@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-24 09:01:12
  * @LastEditors: shen
- * @LastEditTime: 2021-01-24 10:58:54
+ * @LastEditTime: 2021-01-31 16:28:11
  * @Description:
  */
 export interface LoginParams {
@@ -17,4 +17,14 @@ export interface User {
   roleName?: string
   username?: string
   [key: string]: any
+}
+
+export interface Menu {
+  id: string
+  pid: string
+  path: string
+  icon: string
+  enTitle: string
+  zhCnTitle: string
+  children?: Menu[]
 }

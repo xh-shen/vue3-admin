@@ -1,8 +1,8 @@
 /*
  * @Author: shen
- * @Date: 2021-01-23 00:06:08
+ * @Date: 2021-01-31 13:03:58
  * @LastEditors: shen
- * @LastEditTime: 2021-01-27 20:19:38
+ * @LastEditTime: 2021-01-31 13:04:10
  * @Description:
  */
 
@@ -45,7 +45,7 @@ export default defineComponent({
           dropdown: () => (
             <el-dropdown-menu>
               {list.map((item) => (
-                <el-dropdown-item command={item} key={item} disabled={size.value === item}>
+                <el-dropdown-item style="width: 150px" command={item} key={item} disabled={size.value === item}>
                   {item}
                 </el-dropdown-item>
               ))}

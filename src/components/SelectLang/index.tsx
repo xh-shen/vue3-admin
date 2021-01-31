@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-23 00:06:08
  * @LastEditors: shen
- * @LastEditTime: 2021-01-29 08:57:14
+ * @LastEditTime: 2021-01-30 23:06:26
  * @Description:
  */
 
@@ -42,7 +42,7 @@ export default defineComponent({
           dropdown: () => (
             <el-dropdown-menu>
               {list.map((item) => (
-                <el-dropdown-item command={item.lang} key={item.lang} disabled={language.value === item.lang}>{`${item.icon} ${item.label}`}</el-dropdown-item>
+                <el-dropdown-item style="width: 150px" command={item.lang} key={item.lang} disabled={language.value === item.lang}>{`${item.icon} ${item.label}`}</el-dropdown-item>
               ))}
             </el-dropdown-menu>
           ),

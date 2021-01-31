@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-26 23:10:54
  * @LastEditors: shen
- * @LastEditTime: 2021-01-29 08:58:32
+ * @LastEditTime: 2021-01-31 14:27:44
  * @Description:
  */
 import { defineComponent, ref } from 'vue'
@@ -14,6 +14,7 @@ import dartSvg from '@/assets/images/dark.svg'
 import setting, { Setting } from '@/setting'
 import { sleep } from '@/utils'
 import { Message } from '@/utils/element'
+import ThemePicker from './ThemePicker'
 
 interface MenuTheme {
   key: ThemeType
@@ -39,8 +40,6 @@ const menuThemeList: MenuTheme[] = [
   },
 ]
 
-const colors = ['#409eff', 'rgb(245, 34, 45)', 'rgb(250, 173, 20)', 'rgb(82, 196, 26)', 'rgb(47, 84, 235)', 'rgb(114, 46, 209)']
-
 const iconTypeList: IconTypeOption[] = [
   { label: 'iconStyleLine', value: 'line' },
   { label: 'iconStyleFill', value: 'fill' },
@@ -52,7 +51,7 @@ export default defineComponent({
   name: 'Setting',
   setup() {
     const { t } = useI18n()
-    const { menuTheme, theme, iconType, sidebarLogo, tagsView, breadCrumb, u, getPrefixCls } = useInject()
+    const { menuTheme, iconType, sidebarLogo, tagsView, breadCrumb, u, getPrefixCls } = useInject()
     const loading = ref<boolean>(false)
     const prefixCls = getPrefixCls('layout__setting')
 
@@ -97,14 +96,7 @@ export default defineComponent({
         <div class={`${prefixCls}-item`}>
           <h1 class={`${prefixCls}-title`}>{t('setting.themeTitle')}</h1>
           <div class={`${prefixCls}-content`}>
-            <div class={`${prefixCls}-color`}>
-              {colors.map((color) => (
-                <div class={`${prefixCls}-color-item`} key={color} style={{ backgroundColor: color }} onClick={() => onChange('theme', color)}>
-                  {theme.value === color && <i class="el-icon-check"></i>}
-                </div>
-              ))}
-              <el-color-picker size="mini" modelValue={theme.value} onChange={(value: string) => onChange('theme', value)}></el-color-picker>
-            </div>
+            <ThemePicker />
           </div>
         </div>
         <el-divider />

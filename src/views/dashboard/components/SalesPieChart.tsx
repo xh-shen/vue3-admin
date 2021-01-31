@@ -101,6 +101,7 @@ export default defineComponent({
       <pro-card
         title="访问来源占比"
         headerBorder
+        style="margin-bottom: 15px"
         extra={
           <el-dropdown
             placement="bottom-end"

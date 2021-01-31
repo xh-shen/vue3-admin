@@ -2,19 +2,20 @@
  * @Author: shen
  * @Date: 2021-01-22 20:24:53
  * @LastEditors: shen
- * @LastEditTime: 2021-01-27 18:44:56
+ * @LastEditTime: 2021-01-30 23:07:09
  * @Description:
  */
 
 import { ConfigElement } from './types'
 import setting from '@/setting'
 import { SizeType } from '@/types'
+import { local } from '@/utils/storage'
 
 const elementConfig: ConfigElement = {
   /**
    * 尺寸
    */
-  size: (localStorage.getItem('size') as SizeType) || setting.size,
+  size: local.get<SizeType>('size') || setting.size,
 
   /**
    * 层级

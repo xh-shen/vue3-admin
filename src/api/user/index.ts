@@ -6,7 +6,7 @@
  * @Description:
  */
 import request from '@/libs/axios'
-import { User, LoginParams } from '@/interface/user'
+import { User, LoginParams, Menu } from '@/interface/user'
 
 interface LoginData {
   token: string
@@ -14,3 +14,4 @@ interface LoginData {
 
 export const login = (params: LoginParams) => request.post<LoginData>('/user/login', params)
 export const userInfo = () => request.get<User>('/user/info')
+export const getMenu = () => request.get<Menu[]>('/user/menu')

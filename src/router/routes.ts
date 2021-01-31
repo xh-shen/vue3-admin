@@ -2,12 +2,11 @@
  * @Author: shen
  * @Date: 2021-01-19 21:22:17
  * @LastEditors: shen
- * @LastEditTime: 2021-01-27 19:24:10
+ * @LastEditTime: 2021-01-31 19:15:18
  * @Description:
  */
 import { RouteRecordRaw } from 'vue-router'
 import Layout from '@/layout'
-import Dashboard from '@/views/dashboard'
 import Login from '@/views/login'
 
 const routes: Array<RouteRecordRaw> = [
@@ -28,7 +27,7 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: 'dashboard',
-        component: Dashboard,
+        component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard'),
       },
       {
         path: 'icons',
@@ -43,16 +42,32 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import(/* webpackChunkName: "tableQuery" */ '@/views/table/query'),
       },
       {
-        path: 'test',
-        component: () => import(/* webpackChunkName: "test" */ '@/views/test'),
+        path: 'form',
+        component: () => import(/* webpackChunkName: "form" */ '@/views/form'),
+      },
+      {
+        path: '/401',
+        component: () => import(/* webpackChunkName: "401" */ '@/views/error/401'),
+        meta: {
+          title: '401',
+        },
       },
     ],
   },
+  {
+    path: '/404',
+    component: () => import(/* webpackChunkName: "404" */ '@/views/error/404'),
+    meta: {
+      title: '404',
+    },
+  },
+
   {
     path: '/login',
     name: 'Login',
     component: Login,
   },
+  { path: '/:catchAll(.*)', redirect: '/404' },
 ]
 
 export default routes

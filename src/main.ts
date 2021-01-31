@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-19 19:33:43
  * @LastEditors: shen
- * @LastEditTime: 2021-01-26 11:28:09
+ * @LastEditTime: 2021-01-31 11:43:57
  * @Description: entry file
  */
 import { createApp } from 'vue'

@@ -1,11 +1,10 @@
 /*
  * @Author: shen
- * @Date: 2021-01-23 13:15:32
+ * @Date: 2021-01-31 13:04:52
  * @LastEditors: shen
- * @LastEditTime: 2021-01-27 20:18:51
+ * @LastEditTime: 2021-01-31 13:05:04
  * @Description:
  */
-
 import { defineComponent, PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useInject } from '@/hooks/useContext'
@@ -34,7 +33,7 @@ export default defineComponent({
         v-slots={{
           dropdown: () => (
             <el-dropdown-menu>
-              <el-dropdown-item command="user">
+              <el-dropdown-item style="width: 150px" command="user">
                 <svg-icon icon-class={`user-${iconType.value}`} style="margin-right: 8px" />
                 {t('app.userCenter')}
               </el-dropdown-item>

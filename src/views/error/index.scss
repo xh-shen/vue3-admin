@@ -1,0 +1,16 @@
+@import '~@/assets/styles/variables.scss';
+@import '~@/assets/styles/mixins.scss';
+
+@include namespace(pages-error) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &-container {
+    margin-left: 100px;
+    p {
+      font-size: 30px;
+      font-weight: 500;
+      margin-bottom: 30px;
+    }
+  }
+}
