@@ -25,15 +25,34 @@ $dark-aside-color: hsla(0, 0%, 100%, 0.65);
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 10px;
+    // justify-content: center;
+    padding: 5px 4px 10px;
     cursor: pointer;
     overflow: hidden;
+    color: #fff;
+    white-space: nowrap;
+    &.is-collapse {
+      img {
+        margin-left: 0;
+      }
+    }
     img {
       display: inline-block;
-      height: 36px;
+      height: 40px;
+      margin-left: 5px;
       vertical-align: middle;
-      transition: height 0.2s;
+      transition: all 0.2s;
+    }
+    &-text {
+      display: inline-block;
+      height: 40px;
+      margin: 0 0 0 8px;
+      color: $color-primary;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 40px;
+      vertical-align: middle;
+      animation: pro-layout-title-hide 0.3s;
     }
   }
   & &__sidermenu {
@@ -180,6 +199,108 @@ $dark-aside-color: hsla(0, 0%, 100%, 0.65);
   &__breadcrumb {
     flex: 1;
   }
+  &__tagsview {
+    &-wrapper {
+      display: flex;
+      padding: 0 10px 10px;
+    }
+    &-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 2px;
+      height: 32px;
+      background-color: $color-white;
+      border-radius: $border-radius-base;
+      cursor: pointer;
+      transition: all 0.3s;
+      &:hover {
+        background-color: #eee;
+      }
+    }
+    &-container {
+      flex: 1;
+      margin: 0 10px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    &-scroll {
+      white-space: nowrap;
+      width: 100%;
+      .el-scrollbar__bar {
+        height: 0px !important;
+      }
+    }
+    &-tag {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 10px;
+      height: 32px;
+      line-height: 12px;
+      background-color: $color-white;
+      border-radius: $border-radius-base;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-right: 10px;
+      font-size: 12px;
+      color: #909399;
+      &:last-child {
+        margin-right: 0;
+      }
+      &.no-scroll:hover,
+      &.active {
+        @include namespace(layout__tagsview) {
+          &-tag-title {
+            color: $color-text-primary;
+          }
+          &-tag-close {
+            width: auto;
+            margin-left: 5px;
+          }
+        }
+      }
+      &-title {
+        transition: all 0.3s;
+      }
+      &-close {
+        display: inline-block;
+        transition: all 0.3s;
+        border-radius: 50%;
+        width: 0;
+        overflow: hidden;
+        &:hover {
+          color: #fff;
+          background-color: #666;
+          .svg-icon {
+            transform: scale(0.8);
+          }
+        }
+      }
+    }
+    &-contextmenu {
+      margin: 0;
+      background: #fff;
+      z-index: 3000;
+      position: absolute;
+      list-style-type: none;
+      padding: 5px 0;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 400;
+      color: #333;
+      box-shadow: $box-shadow-base;
+      li {
+        margin: 0;
+        padding: 7px 16px;
+        cursor: pointer;
+        transition: all 0.2s;
+        &:hover {
+          background: #eee;
+        }
+      }
+    }
+  }
   & &__main {
     padding: 0;
     padding-top: 10px;
@@ -284,6 +405,11 @@ $dark-aside-color: hsla(0, 0%, 100%, 0.65);
     @include namespace(layout) {
       &__aside {
         background-color: $dark-aside-backgound;
+      }
+      &__logo {
+        &-text {
+          color: #fff;
+        }
       }
       &__collapse {
         color: $dark-aside-color;

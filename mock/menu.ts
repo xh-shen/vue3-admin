@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-31 12:31:14
  * @LastEditors: shen
- * @LastEditTime: 2021-01-31 16:25:21
+ * @LastEditTime: 2021-02-01 22:27:49
  * @Description:
  */
 import { genResponse } from './util'
@@ -39,6 +39,14 @@ const menuList = [
     icon: '',
     enTitle: 'Query Table',
     zhCnTitle: '查询表格',
+  },
+  {
+    id: '3',
+    pid: '0',
+    path: '/form',
+    icon: 'table',
+    enTitle: 'Form',
+    zhCnTitle: '表单',
   },
 ]
 

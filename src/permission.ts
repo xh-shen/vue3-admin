@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-19 21:47:20
  * @LastEditors: shen
- * @LastEditTime: 2021-01-31 19:00:59
+ * @LastEditTime: 2021-01-31 22:15:11
  * @Description:
  */
 
@@ -10,18 +10,19 @@ import router from './router'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import store from './store'
+import setting from '@/setting'
 import { getToken } from './utils/token'
 import { local } from '@/utils/storage'
 import { midlinetoHump } from '@/utils'
 import config from '@/config'
 
 const whiteList = ['/login', '/404']
-const authWhite = ['/401']
+const authWhite = ['/401', '/redirect']
 
 const setPageTitle = (route: any) => {
   const menu = store.getters.menuPathData[route.path]
   if (menu) {
-    const lang = midlinetoHump(local.get('language'))
+    const lang = midlinetoHump((local.get('language') || setting.language) as string)
     document.title = menu[`${lang}Title`] + ' - ' + config.title
   } else {
     document.title = route.meta?.title + ' - ' + config.title
@@ -39,7 +40,7 @@ router.beforeEach(async (to, _, next) => {
       const isAuthentication = store.getters.isAuthentication
       if (isAuthentication) {
         const menuPaths = store.getters.menuPaths.concat(authWhite)
-        if (menuPaths.includes(to.path)) {
+        if (menuPaths.some((item: string) => to.path.startsWith(item))) {
           next()
         } else {
           next({ path: '/401', replace: true })

@@ -2,23 +2,26 @@
  * @Author: shen
  * @Date: 2021-01-19 21:37:06
  * @LastEditors: shen
- * @LastEditTime: 2021-01-31 17:29:02
+ * @LastEditTime: 2021-02-01 16:49:04
  * @Description:
  */
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, KeepAlive, Transition, Suspense } from 'vue'
+import { RouterView, useRoute } from 'vue-router'
 import { useInject } from '@/hooks/useContext'
 import RightPanel from '@/components/RightPanel'
 import Header from './components/Header'
 import Sider from './components/Sider'
+import TagsView from './components/TagsView'
 import Setting from './components/Setting'
 import './index.scss'
 
 export default defineComponent({
   name: 'Layout',
   setup() {
-    const { collapse, menuTheme, breadCrumb, getPrefixCls } = useInject()
+    const { collapse, tagsView, menuTheme, breadCrumb, getPrefixCls } = useInject()
+    const route = useRoute()
     const prefixCls = getPrefixCls('layout')
-    const siderWidth = computed(() => (collapse.value ? '48px' : '200px'))
+    const siderWidth = computed(() => (collapse.value ? '48px' : '208px'))
 
     return () => (
       <el-container class={[prefixCls, `${prefixCls}__${menuTheme.value}`]}>
@@ -38,8 +41,23 @@ export default defineComponent({
             </Header>
           </el-header>
           <el-main class={`${prefixCls}__main`}>
-            <div class={`${prefixCls}__view`} style="height: calc(100vh - 68px);">
-              <router-view />
+            {tagsView.value && <TagsView />}
+            <div class={`${prefixCls}__view`} style={{ height: `calc(100vh - ${tagsView.value ? 110 : 68}px` }}>
+              <RouterView
+                key={route.path}
+                v-slots={{
+                  default: ({ Component: Comp }: any) => {
+                    return (
+                      <Transition name="fade-transform" mode="out-in">
+                        {/* <KeepAlive include={['Dashboard']}> */}
+                        {Comp}
+                        {/* <component is={Comp} /> */}
+                        {/* </KeepAlive> */}
+                      </Transition>
+                    )
+                  },
+                }}
+              />
             </div>
           </el-main>
         </el-container>

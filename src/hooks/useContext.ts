@@ -1,8 +1,9 @@
+import { computed } from 'vue'
 /*
  * @Author: shen
  * @Date: 2021-01-26 19:08:05
  * @LastEditors: shen
- * @LastEditTime: 2021-01-29 08:50:09
+ * @LastEditTime: 2021-02-01 08:31:32
  * @Description:
  */
 import { provide, reactive, readonly, inject, toRefs, ToRefs, Ref } from 'vue'
@@ -10,6 +11,7 @@ import { SizeType, ThemeType, LanguageType, IconType } from '@/types'
 import setting, { Setting } from '@/setting'
 import variables from '@/assets/styles/variables.scss'
 import { local } from '@/utils/storage'
+import { midlinetoHump } from '@/utils'
 
 type ToRefSetting = ToRefs<Setting>
 
@@ -51,10 +53,12 @@ export function useInject() {
   const getPrefixCls: GetPrefixCls = (suffixCls?: string) => {
     return `${JSON.parse(variables.prefix)}${JSON.parse(variables.splicing)}${suffixCls}`
   }
+  const languageHump = computed(() => midlinetoHump(language?.value as string))
   return {
     collapse: collapse as Ref<boolean>,
     menuTheme: menuTheme as Ref<ThemeType>,
     language: language as Ref<LanguageType>,
+    languageHump: languageHump as Ref<string>,
     size: size as Ref<SizeType>,
     iconType: iconType as Ref<IconType>,
     theme: theme as Ref<string>,

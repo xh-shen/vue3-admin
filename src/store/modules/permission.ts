@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-31 12:48:56
  * @LastEditors: shen
- * @LastEditTime: 2021-01-31 14:38:13
+ * @LastEditTime: 2021-02-02 13:52:00
  * @Description:
  */
 import { Module } from 'vuex'
@@ -15,12 +15,18 @@ const dashboard: Menu = {
   id: '10086',
   pid: '0',
   path: '/dashboard',
+  fullPath: '/dashboard',
   icon: 'dashboard',
   enTitle: 'Dashboard',
   zhCnTitle: '首页',
+  name: 'Dashboard',
+  meta: {
+    keepAlive: true,
+  },
 }
 
 const state: PermissionState = {
+  home: dashboard,
   menuList: [],
 }
 
@@ -39,7 +45,7 @@ const permission: Module<PermissionState, unknown> = {
   },
   mutations: {
     [SET_MENU_LIST](state: PermissionState, list: Menu[]) {
-      state.menuList = [dashboard, ...list]
+      state.menuList = [state.home, ...list]
     },
   },
 }

@@ -20,7 +20,7 @@ export default defineComponent({
     }
     return () => (
       <>
-        {sidebarLogo.value && <Logo collapse={collapse.value} />}
+        {sidebarLogo.value && <Logo />}
         <SiderMenu />
         <div onClick={onCollapse} class={`${prefixCls}__collapse`}>
           <span id="sidebar-trigger">

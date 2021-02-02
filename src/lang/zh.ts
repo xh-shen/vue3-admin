@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-22 21:03:55
  * @LastEditors: shen
- * @LastEditTime: 2021-01-27 14:53:26
+ * @LastEditTime: 2021-02-02 08:07:42
  * @Description:
  */
 export default {
@@ -18,6 +18,10 @@ export default {
   button: {
     confirm: '确定',
     cancel: '取消',
+    close: '关闭',
+    refresh: '刷新',
+    closeOthers: '关闭其他',
+    closeAll: '关闭所有',
   },
   setting: {
     menuThemeTitle: '整体风格设置',

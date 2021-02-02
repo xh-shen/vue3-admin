@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-29 21:37:07
  * @LastEditors: shen
- * @LastEditTime: 2021-01-30 20:27:08
+ * @LastEditTime: 2021-02-01 11:15:18
  * @Description:
  */
 import { defineComponent, nextTick, onMounted, onUnmounted, ref, toRefs, watch, PropType } from 'vue'
@@ -42,7 +42,7 @@ export default defineComponent({
       },
     )
     watch(collapse, () => {
-      setTimeout(() => instance && instance.resize(), 60)
+      setTimeout(() => instance && instance.resize(), 400)
     })
     useResize(() => {
       instance && instance.resize()

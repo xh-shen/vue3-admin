@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-24 09:01:12
  * @LastEditors: shen
- * @LastEditTime: 2021-01-31 16:28:11
+ * @LastEditTime: 2021-02-01 08:55:21
  * @Description:
  */
 export interface LoginParams {
@@ -27,4 +27,5 @@ export interface Menu {
   enTitle: string
   zhCnTitle: string
   children?: Menu[]
+  [key: string]: any
 }

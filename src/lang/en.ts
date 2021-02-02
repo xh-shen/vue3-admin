@@ -2,23 +2,27 @@
  * @Author: shen
  * @Date: 2021-01-22 21:04:02
  * @LastEditors: shen
- * @LastEditTime: 2021-01-27 14:53:04
+ * @LastEditTime: 2021-02-02 08:20:15
  * @Description:
  */
 
 export default {
   app: {
     title: 'Vue Element Admin',
-    copyright: '2021 shen development',
-    author: 'shen',
+    copyright: '2021 Shen Development',
+    author: 'Shen',
     lang: 'zh-cn | en',
-    userCenter: 'user center',
-    setting: 'user setting',
-    logout: 'log out',
+    userCenter: 'User Center',
+    setting: 'User Setting',
+    logout: 'Log Out',
   },
   button: {
-    confirm: 'confirm',
-    cancel: 'cancel',
+    confirm: 'Confirm',
+    cancel: 'Cancel',
+    close: 'Close',
+    refresh: 'Refresh',
+    closeOthers: 'Close Others',
+    closeAll: 'Close All',
   },
   setting: {
     menuThemeTitle: 'Overall style setting',
