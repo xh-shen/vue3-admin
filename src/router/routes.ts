@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-19 21:22:17
  * @LastEditors: shen
- * @LastEditTime: 2021-02-02 10:57:40
+ * @LastEditTime: 2021-02-02 23:14:10
  * @Description:
  */
 import { RouteRecordRaw } from 'vue-router'
@@ -11,20 +11,14 @@ import Login from '@/views/login'
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/redirect',
+    path: '/',
     component: Layout,
+    redirect: '/dashboard',
     children: [
       {
         path: '/redirect/:path(.*)',
         component: () => import(/* webpackChunkName: "redirect" */ '@/views/redirect'),
       },
-    ],
-  },
-  {
-    path: '/',
-    component: Layout,
-    redirect: '/dashboard',
-    children: [
       {
         path: 'dashboard',
         name: 'Dashboard',
@@ -89,7 +83,6 @@ const routes: Array<RouteRecordRaw> = [
 
   {
     path: '/login',
-    name: 'Login',
     component: Login,
   },
   { path: '/:catchAll(.*)', redirect: '/404' },

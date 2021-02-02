@@ -2,24 +2,23 @@
  * @Author: shen
  * @Date: 2021-01-19 21:37:06
  * @LastEditors: shen
- * @LastEditTime: 2021-02-01 16:49:04
+ * @LastEditTime: 2021-02-02 22:29:10
  * @Description:
  */
-import { computed, defineComponent, KeepAlive, Transition, Suspense } from 'vue'
-import { RouterView, useRoute } from 'vue-router'
+import { computed, defineComponent } from 'vue'
 import { useInject } from '@/hooks/useContext'
 import RightPanel from '@/components/RightPanel'
 import Header from './components/Header'
 import Sider from './components/Sider'
 import TagsView from './components/TagsView'
 import Setting from './components/Setting'
+import Main from './main.vue'
 import './index.scss'
 
 export default defineComponent({
   name: 'Layout',
   setup() {
     const { collapse, tagsView, menuTheme, breadCrumb, getPrefixCls } = useInject()
-    const route = useRoute()
     const prefixCls = getPrefixCls('layout')
     const siderWidth = computed(() => (collapse.value ? '48px' : '208px'))
 
@@ -43,21 +42,7 @@ export default defineComponent({
           <el-main class={`${prefixCls}__main`}>
             {tagsView.value && <TagsView />}
             <div class={`${prefixCls}__view`} style={{ height: `calc(100vh - ${tagsView.value ? 110 : 68}px` }}>
-              <RouterView
-                key={route.path}
-                v-slots={{
-                  default: ({ Component: Comp }: any) => {
-                    return (
-                      <Transition name="fade-transform" mode="out-in">
-                        {/* <KeepAlive include={['Dashboard']}> */}
-                        {Comp}
-                        {/* <component is={Comp} /> */}
-                        {/* </KeepAlive> */}
-                      </Transition>
-                    )
-                  },
-                }}
-              />
+              <Main />
             </div>
           </el-main>
         </el-container>

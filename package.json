@@ -1,23 +1,32 @@
 {
-  "name": "vue-element-admin",
+  "name": "vue3-admin",
   "version": "0.1.0",
-  "description": "A vue3 admin template",
+  "description": "A Vue3 Typescript Admin Template",
   "repository": {
     "type": "git",
-    "url": "https://github.com/xh-shen/vue3-admin-template.git"
+    "url": "https://github.com/xh-shen/vue3-admin.git"
   },
   "keywords": [
     "vue",
-    "vue3",
+    "vue3.0",
     "typescript",
     "element plus",
+    "vue-i18n",
+    "mockjs",
+    "vue-router",
+    "vuex",
+    "echarts",
     "admin",
-    "i18n",
     "mock",
     "vue-cli",
     "vue-admin",
     "admin-template",
-    "template"
+    "template",
+    "tsx",
+    "jsx",
+    "echarts5",
+    "i18n",
+    "svg-icon"
   ],
   "author": "shen <9509394@qq.com>",
   "license": "MIT",

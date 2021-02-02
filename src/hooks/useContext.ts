@@ -3,7 +3,7 @@ import { computed } from 'vue'
  * @Author: shen
  * @Date: 2021-01-26 19:08:05
  * @LastEditors: shen
- * @LastEditTime: 2021-02-01 08:31:32
+ * @LastEditTime: 2021-02-02 22:18:51
  * @Description:
  */
 import { provide, reactive, readonly, inject, toRefs, ToRefs, Ref } from 'vue'
@@ -35,6 +35,7 @@ export function useProvide() {
     tagsView: local.get<boolean>('tagsView') || setting.tagsView,
     breadCrumb: local.get<boolean>('breadCrumb') || setting.breadCrumb,
     collapse: local.get<boolean>('collapse') || setting.collapse,
+    keyValue: setting.keyValue,
   })
 
   provide<ToRefSetting>(ConfigStateSymbol, toRefs(readonly(state)))
@@ -48,7 +49,7 @@ export function useProvide() {
 }
 
 export function useInject() {
-  const { collapse, menuTheme, language, size, iconType, theme, tagsView, sidebarLogo, breadCrumb } = inject<ToRefSetting>(ConfigStateSymbol) as ToRefSetting
+  const { collapse, menuTheme, language, size, iconType, theme, tagsView, sidebarLogo, breadCrumb, keyValue } = inject<ToRefSetting>(ConfigStateSymbol) as ToRefSetting
   const u = inject<Update>(ConfigUpdateSymbol) as Update
   const getPrefixCls: GetPrefixCls = (suffixCls?: string) => {
     return `${JSON.parse(variables.prefix)}${JSON.parse(variables.splicing)}${suffixCls}`
@@ -65,6 +66,7 @@ export function useInject() {
     tagsView: tagsView as Ref<boolean>,
     sidebarLogo: sidebarLogo as Ref<boolean>,
     breadCrumb: breadCrumb as Ref<boolean>,
+    keyValue: keyValue as Ref<number>,
     getPrefixCls,
     u,
   }

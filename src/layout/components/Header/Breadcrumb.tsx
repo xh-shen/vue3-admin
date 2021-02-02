@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-31 13:03:37
  * @LastEditors: shen
- * @LastEditTime: 2021-02-01 10:06:53
+ * @LastEditTime: 2021-02-02 22:59:10
  * @Description:
  */
 import { computed, defineComponent, ref, watchEffect, TransitionGroup } from 'vue'
@@ -45,6 +45,9 @@ export default defineComponent({
         breadcrumbList.value = []
         return
       }
+      if (path.value.startsWith('/redirect/')) {
+        return
+      }
       const menu = getters.menuPathData[path.value]
       if (!menu) {
         breadcrumbList.value = [
@@ -61,16 +64,21 @@ export default defineComponent({
     return () => (
       <div class={prefixCls}>
         {breadCrumb.value && (
-          <el-breadcrumb separator="/">
-            <TransitionGroup name="breadcrumb">
-              <el-breadcrumb-item key={homeMenu.value.path} to={{ path: homeMenu.value.path }}>
-                {homeMenu.value[`${languageHump.value}Title`]}
-              </el-breadcrumb-item>
-              {breadcrumbList.value.map((item: any) => (
-                <el-breadcrumb-item key={item.path}>{item[`${languageHump.value}Title`] || item.title}</el-breadcrumb-item>
-              ))}
-            </TransitionGroup>
-          </el-breadcrumb>
+          <>
+            <span class={`${prefixCls}-icon`}>
+              <svg-icon icon-class="breadcrumb-line" />
+            </span>
+            <el-breadcrumb class={`${prefixCls}-content`} separator="/">
+              <TransitionGroup name="breadcrumb">
+                <el-breadcrumb-item key={homeMenu.value.path} to={{ path: homeMenu.value.path }}>
+                  {homeMenu.value[`${languageHump.value}Title`]}
+                </el-breadcrumb-item>
+                {breadcrumbList.value.map((item: any) => (
+                  <el-breadcrumb-item key={item.path}>{item[`${languageHump.value}Title`] || item.title}</el-breadcrumb-item>
+                ))}
+              </TransitionGroup>
+            </el-breadcrumb>
+          </>
         )}
       </div>
     )

@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-31 13:02:11
  * @LastEditors: shen
- * @LastEditTime: 2021-01-31 15:43:46
+ * @LastEditTime: 2021-02-02 22:15:10
  * @Description:
  */
 
@@ -24,7 +24,7 @@ export default defineComponent({
     const route = useRoute()
     const { replace } = useRouter()
     const { getters, dispatch } = useStore()
-    const { getPrefixCls } = useInject()
+    const { keyValue, getPrefixCls } = useInject()
     const prefixCls = getPrefixCls('layout__header')
     const username = computed(() => getters.userInfo.username || getters.userInfo.realName)
     const onCommand = async (command: string) => {
@@ -43,9 +43,9 @@ export default defineComponent({
           <HeaderSearch class={`${prefixCls}-active-base ${prefixCls}-active-search`} />
           <HeaderNotice class={`${prefixCls}-active-base ${prefixCls}-active-notice`} />
           <Screenfull class={`${prefixCls}-active-base ${prefixCls}-active-fullscreen`} />
-          <SelectSize class={`${prefixCls}-active-base ${prefixCls}-active-size`} />
-          <AvatarDropdown username={username.value} onCommand={onCommand} />
-          <SelectLang class={`${prefixCls}-active-base ${prefixCls}-active-lang`} />
+          <SelectSize key={`SelectSize${keyValue.value}`} class={`${prefixCls}-active-base ${prefixCls}-active-size`} />
+          <AvatarDropdown key={`AvatarDropdown${keyValue.value}`} username={username.value} onCommand={onCommand} />
+          <SelectLang key={`SelectLang${keyValue.value}`} class={`${prefixCls}-active-base ${prefixCls}-active-lang`} />
         </div>
       </>
     )

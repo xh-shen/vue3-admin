@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-26 19:44:12
  * @LastEditors: shen
- * @LastEditTime: 2021-01-29 08:47:05
+ * @LastEditTime: 2021-02-02 22:11:22
  * @Description:
  */
 import { SizeType, ThemeType, LanguageType, IconType } from './types'
@@ -18,6 +18,7 @@ export interface Setting {
   tagsView?: boolean
   breadCrumb?: boolean
   collapse?: boolean
+  keyValue?: number
 }
 
 const setting: Setting = {
@@ -30,6 +31,7 @@ const setting: Setting = {
   tagsView: true,
   breadCrumb: true,
   collapse: false,
+  keyValue: 0,
 }
 
 export default setting

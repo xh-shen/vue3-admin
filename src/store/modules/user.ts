@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-23 21:53:41
  * @LastEditors: shen
- * @LastEditTime: 2021-01-24 11:25:47
+ * @LastEditTime: 2021-02-02 20:21:29
  * @Description:
  */
 import { Module } from 'vuex'
@@ -46,6 +46,8 @@ const user: Module<UserState, unknown> = {
     async logout({ dispatch }) {
       // 此处可以使用服务端退出
       await dispatch('resetToken')
+      dispatch('tagsView/delAllViews', null, { root: true })
+      dispatch('permission/delAllMenu', null, { root: true })
       return true
     },
     async resetToken({ commit }) {

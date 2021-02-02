@@ -2,10 +2,10 @@
  * @Author: shen
  * @Date: 2021-01-26 19:46:28
  * @LastEditors: shen
- * @LastEditTime: 2021-01-31 23:15:35
+ * @LastEditTime: 2021-02-02 22:46:09
  * @Description:
  */
-export type SizeType = 'mini' | 'small' | 'medium' | 'default'
+export type SizeType = 'mini' | 'small' | 'medium' | undefined
 
 export type ThemeType = 'dark' | 'light'
 

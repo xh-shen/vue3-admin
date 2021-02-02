@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-19 22:03:38
  * @LastEditors: shen
- * @LastEditTime: 2021-02-01 16:33:12
+ * @LastEditTime: 2021-02-02 21:29:36
  * @Description:
  */
 
@@ -16,7 +16,7 @@ interface Config {
 }
 
 const config: Config = {
-  title: 'Vue Element Pro',
+  title: 'Vue3.0 Admin',
   zhCnLocale: 'zh-cn',
   enLocale: 'en',
   prefixUrl: '/api',

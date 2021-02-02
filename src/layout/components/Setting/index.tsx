@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-26 23:10:54
  * @LastEditors: shen
- * @LastEditTime: 2021-01-31 14:27:44
+ * @LastEditTime: 2021-02-02 22:17:43
  * @Description:
  */
 import { defineComponent, ref } from 'vue'
@@ -51,7 +51,7 @@ export default defineComponent({
   name: 'Setting',
   setup() {
     const { t } = useI18n()
-    const { menuTheme, iconType, sidebarLogo, tagsView, breadCrumb, u, getPrefixCls } = useInject()
+    const { menuTheme, iconType, sidebarLogo, tagsView, breadCrumb, keyValue, u, getPrefixCls } = useInject()
     const loading = ref<boolean>(false)
     const prefixCls = getPrefixCls('layout__setting')
 
@@ -103,7 +103,7 @@ export default defineComponent({
         <div class={`${prefixCls}-item`}>
           <div class={`${prefixCls}-content`}>
             <span class={`${prefixCls}--content-title`}>{t('setting.iconStyle')}</span>
-            <el-select modelValue={iconType.value} size="mini" style="width: 90px" onChange={(value: string) => onChange('iconType', value)}>
+            <el-select key={`SelectIconType${keyValue.value}`} modelValue={iconType.value} size="mini" style="width: 90px" onChange={(value: string) => onChange('iconType', value)}>
               {iconTypeList.map((item) => (
                 <el-option key={item.value} label={t(`setting.${item.label}`)} value={item.value} />
               ))}

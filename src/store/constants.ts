@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-23 21:57:03
  * @LastEditors: shen
- * @LastEditTime: 2021-02-02 13:33:23
+ * @LastEditTime: 2021-02-02 20:20:33
  * @Description:
  */
 // app module
@@ -16,6 +16,7 @@ export const SET_IS_AUTHENTICATION = 'SET_IS_AUTHENTICATION'
 
 // permission module
 export const SET_MENU_LIST = 'SET_MENU_LIST'
+export const DEL_ALL_MENU = 'DEL_ALL_MENU'
 
 // tagsView module
 export const ADD_VISITED_VIEW = 'ADD_VISITED_VIEW'

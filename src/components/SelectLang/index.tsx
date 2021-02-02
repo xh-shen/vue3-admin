@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-23 00:06:08
  * @LastEditors: shen
- * @LastEditTime: 2021-01-30 23:06:26
+ * @LastEditTime: 2021-02-02 22:20:03
  * @Description:
  */
 
@@ -28,10 +28,11 @@ export default defineComponent({
   name: 'SelectLang',
   setup() {
     const { locale } = useI18n()
-    const { iconType, language, u } = useInject()
+    const { iconType, language, keyValue, u } = useInject()
     const onCommand = (command: string): void => {
       locale.value = command
       u('language', command)
+      u('keyValue', (keyValue.value as number) + 1)
       Message('Switch Language Success')
     }
     return () => (

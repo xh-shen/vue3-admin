@@ -2,11 +2,12 @@
  * @Author: shen
  * @Date: 2021-01-31 23:09:42
  * @LastEditors: shen
- * @LastEditTime: 2021-02-02 13:53:05
+ * @LastEditTime: 2021-02-02 20:15:27
  * @Description:
  */
 import { Module } from 'vuex'
-import { TagsViewState } from '../types'
+import { TagsViewState, VisitedViews } from '../types'
+import { local } from '@/utils/storage'
 import {
   ADD_VISITED_VIEW,
   ADD_CACHED_VIEW,
@@ -19,9 +20,11 @@ import {
   DEL_OTHERS_VISITED_VIEWS,
 } from '../constants'
 
+const defaultCached = ['Dashboard']
+
 const state: TagsViewState = {
-  visitedViews: [],
-  cachedViews: [],
+  visitedViews: local.get<VisitedViews[]>('tagsList') || [],
+  cachedViews: defaultCached,
 }
 
 const tagsView: Module<TagsViewState, unknown> = {
@@ -118,6 +121,7 @@ const tagsView: Module<TagsViewState, unknown> = {
           title: view.meta?.title || 'no-name',
         }),
       )
+      local.set('tagsList', state.visitedViews)
     },
     [ADD_CACHED_VIEW]: (state, view) => {
       if (state.cachedViews.includes(view.name)) return
@@ -132,6 +136,7 @@ const tagsView: Module<TagsViewState, unknown> = {
           break
         }
       }
+      local.set('tagsList', state.visitedViews)
     },
     [DEL_CACHED_VIEW]: (state, view) => {
       const index = state.cachedViews.indexOf(view.name)
@@ -141,6 +146,7 @@ const tagsView: Module<TagsViewState, unknown> = {
       state.visitedViews = state.visitedViews.filter((v) => {
         return v.path === view.path
       })
+      local.set('tagsList', state.visitedViews)
     },
     [DEL_OTHERS_CACHED_VIEWS]: (state, view) => {
       const index = state.cachedViews.indexOf(view.name)
@@ -152,12 +158,11 @@ const tagsView: Module<TagsViewState, unknown> = {
     },
 
     [DEL_ALL_VISITED_VIEWS]: (state) => {
-      // keep affix tags
-      const affixTags = state.visitedViews.filter((tag) => tag.meta.affix)
-      state.visitedViews = affixTags
+      state.visitedViews = []
+      local.set('tagsList', state.visitedViews)
     },
     [DEL_ALL_CACHED_VIEWS]: (state) => {
-      state.cachedViews = []
+      state.cachedViews = defaultCached
     },
 
     [UPDATE_VISITED_VIEW]: (state, view) => {
@@ -167,6 +172,7 @@ const tagsView: Module<TagsViewState, unknown> = {
           break
         }
       }
+      local.set('tagsList', state.visitedViews)
     },
   },
 }

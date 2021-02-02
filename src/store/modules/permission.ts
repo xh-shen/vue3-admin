@@ -2,14 +2,14 @@
  * @Author: shen
  * @Date: 2021-01-31 12:48:56
  * @LastEditors: shen
- * @LastEditTime: 2021-02-02 13:52:00
+ * @LastEditTime: 2021-02-02 20:21:52
  * @Description:
  */
 import { Module } from 'vuex'
 import { PermissionState } from '../types'
 import { Menu } from '@/interface/user'
 import { getMenu } from '@/api/user'
-import { SET_MENU_LIST } from '../constants'
+import { SET_MENU_LIST, DEL_ALL_MENU } from '../constants'
 
 const dashboard: Menu = {
   id: '10086',
@@ -42,10 +42,17 @@ const permission: Module<PermissionState, unknown> = {
         throw new Error(msg)
       }
     },
+    delAllMenu({ commit }) {
+      commit(DEL_ALL_MENU)
+    },
   },
   mutations: {
     [SET_MENU_LIST](state: PermissionState, list: Menu[]) {
       state.menuList = [state.home, ...list]
+    },
+    [DEL_ALL_MENU](state: PermissionState) {
+      state.menuList = []
+      console.log('menuList', state.menuList)
     },
   },
 }
