@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-31 21:48:28
  * @LastEditors: shen
- * @LastEditTime: 2021-02-02 23:04:44
+ * @LastEditTime: 2021-02-03 08:45:01
  * @Description:
  */
 import { computed, defineComponent, nextTick, reactive, ref, watch } from 'vue'
@@ -32,12 +32,12 @@ export default defineComponent({
     const prefixCls = getPrefixCls('layout__tagsview')
     const path = computed(() => route.path)
     const homeMenu = computed(() => state.permission.home)
-    const scrollWrapper = computed(() => scroll.value!.$refs.wrap)
+    const scrollWrapper = computed(() => scroll.value?.$refs.wrap)
     const visitedViews = computed(() => state.tagsView.visitedViews)
 
     const genTagView = (path: string) => {
       const menu = getters.menuPathData[path] || {}
-      return { ...route, ...menu }
+      return { ...route, ...menu, matched: undefined, redirectedFrom: undefined }
     }
 
     const stopScroll = () => {

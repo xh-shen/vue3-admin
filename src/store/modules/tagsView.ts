@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-31 23:09:42
  * @LastEditors: shen
- * @LastEditTime: 2021-02-02 20:15:27
+ * @LastEditTime: 2021-02-03 08:30:08
  * @Description:
  */
 import { Module } from 'vuex'
@@ -21,6 +21,13 @@ import {
 } from '../constants'
 
 const defaultCached = ['Dashboard']
+
+const setLocalViews = (views: any) => {
+  local.set(
+    'tagsList',
+    views.map((item: any) => ({ ...item })),
+  )
+}
 
 const state: TagsViewState = {
   visitedViews: local.get<VisitedViews[]>('tagsList') || [],
@@ -121,7 +128,7 @@ const tagsView: Module<TagsViewState, unknown> = {
           title: view.meta?.title || 'no-name',
         }),
       )
-      local.set('tagsList', state.visitedViews)
+      setLocalViews(state.visitedViews)
     },
     [ADD_CACHED_VIEW]: (state, view) => {
       if (state.cachedViews.includes(view.name)) return
@@ -136,7 +143,7 @@ const tagsView: Module<TagsViewState, unknown> = {
           break
         }
       }
-      local.set('tagsList', state.visitedViews)
+      setLocalViews(state.visitedViews)
     },
     [DEL_CACHED_VIEW]: (state, view) => {
       const index = state.cachedViews.indexOf(view.name)
@@ -146,7 +153,7 @@ const tagsView: Module<TagsViewState, unknown> = {
       state.visitedViews = state.visitedViews.filter((v) => {
         return v.path === view.path
       })
-      local.set('tagsList', state.visitedViews)
+      setLocalViews(state.visitedViews)
     },
     [DEL_OTHERS_CACHED_VIEWS]: (state, view) => {
       const index = state.cachedViews.indexOf(view.name)
@@ -159,7 +166,7 @@ const tagsView: Module<TagsViewState, unknown> = {
 
     [DEL_ALL_VISITED_VIEWS]: (state) => {
       state.visitedViews = []
-      local.set('tagsList', state.visitedViews)
+      setLocalViews(state.visitedViews)
     },
     [DEL_ALL_CACHED_VIEWS]: (state) => {
       state.cachedViews = defaultCached
@@ -172,7 +179,7 @@ const tagsView: Module<TagsViewState, unknown> = {
           break
         }
       }
-      local.set('tagsList', state.visitedViews)
+      setLocalViews(state.visitedViews)
     },
   },
 }

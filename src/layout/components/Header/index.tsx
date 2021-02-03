@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-31 13:02:11
  * @LastEditors: shen
- * @LastEditTime: 2021-02-02 22:15:10
+ * @LastEditTime: 2021-02-03 08:45:31
  * @Description:
  */
 
@@ -20,7 +20,7 @@ import BreadCrumb from './Breadcrumb'
 
 export default defineComponent({
   name: 'Header',
-  setup(_, { slots }) {
+  setup() {
     const route = useRoute()
     const { replace } = useRouter()
     const { getters, dispatch } = useStore()
