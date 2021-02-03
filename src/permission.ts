@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-19 21:47:20
  * @LastEditors: shen
- * @LastEditTime: 2021-01-31 22:15:11
+ * @LastEditTime: 2021-02-03 10:29:10
  * @Description:
  */
 
@@ -25,7 +25,7 @@ const setPageTitle = (route: any) => {
     const lang = midlinetoHump((local.get('language') || setting.language) as string)
     document.title = menu[`${lang}Title`] + ' - ' + config.title
   } else {
-    document.title = route.meta?.title + ' - ' + config.title
+    document.title = route.meta?.title ? route.meta?.title + ' - ' + config.title : config.title
   }
 }
 
