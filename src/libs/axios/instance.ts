@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-23 15:41:08
  * @LastEditors: shen
- * @LastEditTime: 2021-01-24 16:40:17
+ * @LastEditTime: 2021-02-05 00:07:09
  * @Description:
  */
 import axios, { AxiosError, AxiosInstance } from 'axios'
@@ -27,7 +27,7 @@ instance.interceptors.request.use((config) => {
 // 添加响应拦截器
 instance.interceptors.response.use((response) => {
   const { data } = response
-  console.log(data)
+  // console.log(data)
   // 请求异常提示信息
   if (data.code !== 200) {
     Notification(data.msg, 'error')

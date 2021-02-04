@@ -1,12 +1,11 @@
-import { computed } from 'vue'
 /*
  * @Author: shen
  * @Date: 2021-01-26 19:08:05
  * @LastEditors: shen
- * @LastEditTime: 2021-02-02 22:18:51
+ * @LastEditTime: 2021-02-03 20:07:42
  * @Description:
  */
-import { provide, reactive, readonly, inject, toRefs, ToRefs, Ref } from 'vue'
+import { provide, reactive, readonly, inject, toRefs, ToRefs, Ref, computed } from 'vue'
 import { SizeType, ThemeType, LanguageType, IconType } from '@/types'
 import setting, { Setting } from '@/setting'
 import variables from '@/assets/styles/variables.scss'

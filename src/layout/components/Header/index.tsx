@@ -30,7 +30,6 @@ export default defineComponent({
     const onCommand = async (command: string) => {
       switch (command) {
         case 'logout':
-          console.log(command)
           await dispatch('user/logout')
           replace({ path: '/', query: { redirect: route.path } })
           break

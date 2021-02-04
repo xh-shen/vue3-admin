@@ -91,7 +91,8 @@
     "svg-sprite-loader": "^5.2.1",
     "svgo": "^1.3.2",
     "typescript": "~3.9.3",
-    "vue-jest": "^5.0.0-0"
+    "vue-jest": "^5.0.0-0",
+    "webpack-dynamic-theme-plugin": "^0.1.0"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"

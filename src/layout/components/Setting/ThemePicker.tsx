@@ -2,14 +2,16 @@
  * @Author: shen
  * @Date: 2021-01-31 09:44:12
  * @LastEditors: shen
- * @LastEditTime: 2021-01-31 14:27:54
+ * @LastEditTime: 2021-02-05 00:08:16
  * @Description:
  */
 import { defineComponent, ref } from 'vue'
 import { useInject } from '@/hooks/useContext'
+import { local } from '@/utils/storage'
+import { Message } from '@/utils/element'
+import { genThemeStyleTag, getThemeStyle } from '@/theme'
 
-const colors = ['#409eff', '#3AA1FF', '#36CBCB', '#F2637B', '#975FE5', '#FBD437']
-
+const colors = ['#409eff', '#36CBCB', '#F2637B', '#975FE5', '#FBD437']
 export default defineComponent({
   name: 'ThemePicker',
   setup() {
@@ -23,20 +25,6 @@ export default defineComponent({
         newStyle = newStyle.replace(new RegExp(color, 'ig'), newCluster[index])
       })
       return newStyle
-    }
-
-    const getCSSString = (url: string) => {
-      return new Promise((resolve) => {
-        const xhr = new XMLHttpRequest()
-        xhr.onreadystatechange = () => {
-          if (xhr.readyState === 4 && xhr.status === 200) {
-            chalk.value = xhr.responseText.replace(/@font-face{[^}]+}/, '')
-            resolve(null)
-          }
-        }
-        xhr.open('GET', url)
-        xhr.send()
-      })
     }
 
     const getThemeCluster = (theme: string) => {
@@ -85,44 +73,22 @@ export default defineComponent({
       return clusters
     }
 
-    const getHandler = (id: string, themeCluster: string[]) => {
-      return () => {
-        const originalCluster = getThemeCluster(theme.value.replace('#', ''))
-        const newStyle: any = updateStyle(chalk.value, originalCluster, themeCluster)
-
-        let styleTag = document.getElementById(id)
-        if (!styleTag) {
-          styleTag = document.createElement('style')
-          styleTag.setAttribute('id', id)
-          document.head.appendChild(styleTag)
-        }
-        styleTag.innerText = newStyle
-        chalk.value = newStyle
-      }
-    }
-
     const onChange = async (value: string) => {
-      const themeCluster = getThemeCluster(value.replace('#', ''))
       const originalCluster = getThemeCluster(theme.value.replace('#', ''))
+      const themeCluster = getThemeCluster(value.replace('#', ''))
 
       if (!chalk.value) {
-        await getCSSString('/theme-chalk/index.css')
+        chalk.value = await getThemeStyle()
       }
+      const newStyle: any = updateStyle(chalk.value, originalCluster, themeCluster)
 
-      const chalkHandler = getHandler('chalk-style', themeCluster)
+      genThemeStyleTag(newStyle)
 
-      chalkHandler()
+      chalk.value = newStyle
 
-      const styles = [].slice.call(document.querySelectorAll('style')).filter((style: any) => {
-        const text = style.innerText
-        return new RegExp(theme.value, 'i').test(text) && !/Chalk Variables/.test(text)
-      })
-      styles.forEach((style: any) => {
-        const { innerText } = style
-        if (typeof innerText !== 'string') return
-        style.innerText = updateStyle(innerText, originalCluster, themeCluster)
-      })
+      local.set('theme-chalk', chalk.value)
       u('theme', value)
+      Message('Switch Theme Success')
     }
     return () => (
       <div class={`${prefixCls}-color`}>

@@ -38,3 +38,8 @@ a {
     background-color: transparent !important;
   }
 }
+
+.el-button--primary:focus,
+.el-button--primary:hover {
+  color: #fff !important;
+}

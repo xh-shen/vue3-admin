@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-24 19:15:55
  * @LastEditors: shen
- * @LastEditTime: 2021-01-28 10:28:24
+ * @LastEditTime: 2021-02-05 00:06:57
  * @Description:
  */
 import { defineComponent, PropType } from 'vue'
@@ -44,7 +44,6 @@ export default defineComponent({
   inheritAttrs: false,
   props: DialogProps,
   setup(props, { attrs, emit, slots }) {
-    console.log(attrs)
     const { t } = useI18n()
     const { getPrefixCls } = useInject()
     const prefixCls = getPrefixCls('dialog')

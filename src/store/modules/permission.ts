@@ -52,7 +52,6 @@ const permission: Module<PermissionState, unknown> = {
     },
     [DEL_ALL_MENU](state: PermissionState) {
       state.menuList = []
-      console.log('menuList', state.menuList)
     },
   },
 }

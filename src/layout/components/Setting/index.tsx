@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-26 23:10:54
  * @LastEditors: shen
- * @LastEditTime: 2021-02-02 22:17:43
+ * @LastEditTime: 2021-02-05 00:06:16
  * @Description:
  */
 import { defineComponent, ref } from 'vue'
@@ -15,6 +15,7 @@ import setting, { Setting } from '@/setting'
 import { sleep } from '@/utils'
 import { Message } from '@/utils/element'
 import ThemePicker from './ThemePicker'
+import { removeStyleTag } from '@/theme'
 
 interface MenuTheme {
   key: ThemeType
@@ -64,8 +65,9 @@ export default defineComponent({
       await sleep(300)
       const resets: SettingKeys[] = ['menuTheme', 'theme', 'iconType', 'sidebarLogo', 'tagsView', 'breadCrumb']
       resets.forEach((key: SettingKeys) => onChange(key, setting[key] as string))
+      removeStyleTag()
       loading.value = false
-      Message('reset success')
+      Message('Reset Setting Success')
     }
 
     return () => (
